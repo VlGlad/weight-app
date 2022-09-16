@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="public/css/main.css">
-    <!-- <script type="text/javascript" src="public/main.js"></script> -->
+    <script type="text/javascript" src="public/js/js.js"></script>
     <title>Weight App</title>
 </head>
 <body>
@@ -46,13 +46,14 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/signin" method="post" class="signUpForm">
+                    <form action="/signin" method="post" id="signInForm" class="signUpForm">
                         <label for="login">Login</label>
                         <input type="text" class="text_input" name="login" placeholder="Enter here your login">
                         <label for="password">Password</label>
                         <input type="password" class="text_input" name="password" placeholder="Enter here your password">
                         <input type="submit" class="submit_input" value="Sign in!">
                     </form>
+                    <p id="loginFailMessage">User with such data was not found. Please try again!</p>
                 </div>
             </div>
         </div>
@@ -69,7 +70,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/signup" method="post" class="signUpForm">
+                    <form action="/signup" method="post" class="signUpForm" id="signUpForm">
                         <label for="login">Login</label>
                         <input type="text" class="text_input" name="login" placeholder="Enter here your login">
                         <label for="password">Password</label>
