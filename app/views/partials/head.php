@@ -10,30 +10,6 @@
     <title>Weight App</title>
 </head>
 <body>
-    <!-- <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">Weight Tracker App</a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="/about">About</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="container">
-                <button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal" data-bs-target="#signInModal">
-                Sign in
-                </button>
-                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#signUpModal">
-                Sign up
-                </button>
-            </div>
-        </div>
-    </nav> -->
-
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Weight Tracker App</a>

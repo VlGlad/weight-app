@@ -15,6 +15,21 @@ class QuerySelector
         return $table;
     }
 
+    public function getRowsWhere($table, $condition)
+    {
+        $request = sprintf(
+            "SELECT * FROM %s WHERE %s=%s",
+            $table,
+            implode('', array_keys($condition)),
+            ':' . implode('', array_keys($condition))
+        );
+
+        $stmt = $this->pdo->prepare($request);
+        $stmt->execute($condition);
+        $table = $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $table;
+    }
+
     public function insert($table, $data)
     {
         $request = sprintf(
