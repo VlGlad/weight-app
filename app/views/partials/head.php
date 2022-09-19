@@ -79,6 +79,7 @@
                         <input type="password" class="text_input" name="password_check" placeholder="Please confirm your password">
                         <input type="submit" class="submit_input" value="register!">
                     </form>
+                    <p id="registerFailMessage"></p>
                 </div>
             </div>
         </div>

@@ -5,6 +5,13 @@ p#loginFailMessage {
     margin-block-end: 0;
     margin-block-start: 5px;
 }
+p#registerFailMessage {
+    display: none;
+    color: red;
+    text-align: center;
+    margin-block-end: 0;
+    margin-block-start: 5px;
+}
 .signUpForm {
     display: flex;
     flex-direction: column;
