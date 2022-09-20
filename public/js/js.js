@@ -84,11 +84,11 @@ document.addEventListener('DOMContentLoaded', (e) => {
       
         let result = await response.json();
 
-        console.log(result);
-
-        /* if (!result.login){
-            loginFailMessage.style.display = "block";
+        if (result.register){
+            registerFailMessage.style.color = "green";
+            registerFailMessage.style.display = "block";
+            registerFailMessage.textContent = "Registration completed successfully!"
             return;
-        } */
+        }
     };
 });

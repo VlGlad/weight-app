@@ -25,14 +25,20 @@
                         <a class="nav-link" href="/about">About</a>
                     </li>
                 </ul>
-                <div class="loginInOutButtons">
-                    <button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal" data-bs-target="#signInModal">
-                    Sign in
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#signUpModal">
-                    Sign up
-                    </button>
-                </div>  
+                <?php if (!isset($_SESSION['user_id'])):?>
+                    <div class="loginInOutButtons">
+                        <button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal" data-bs-target="#signInModal">
+                        Sign in
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#signUpModal">
+                        Sign up
+                        </button>
+                    </div>
+                <?php else:?>
+                    <div class="logOutButton">
+                        <p>Hello, <?=$user_name?> <a href="logout" style="color: red;">Выйти</a></p>
+                    </div>
+                <?php endif;?>  
             </div>
         </div>
     </nav>

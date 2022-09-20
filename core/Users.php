@@ -1,7 +1,7 @@
 <?php
 
 class Users{
-    private $users_table = "users_login_data";
+    static public $users_table = "users_login_data";
 
     public function signIn($args = NULL)
     {
@@ -17,7 +17,7 @@ class Users{
             die;
         }
         
-        $user = App::get("database")->getRowsWhere($this->users_table, ['login' => $_POST['login']]);
+        $user = App::get("database")->getRowsWhere(self::$users_table, ['login' => $_POST['login']]);
         $user_count = count($user);
         if (!$user_count){
             echo json_encode($answer);
@@ -38,7 +38,7 @@ class Users{
     public function signUp($args = NULL)
     {
         $answer = [
-            "login" => false,
+            "register" => false,
         ];
 
         $login = $_POST["login"];
@@ -62,14 +62,29 @@ class Users{
 
         if ($password != $password_check){
             echo json_encode($answer);
-            die;            
+            die;
         }
 
         $user_data = [
             'login' => $_POST['login'],
             'password' => password_hash($_POST['password'], PASSWORD_DEFAULT)
         ];
-        App::get('database')->insert("users_login_data", $user_data);
 
+        try {
+            App::get('database')->insert("users_login_data", $user_data);   
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        $answer['register'] = true;
+        echo json_encode($answer);
+    }
+
+    public function logOut($args = NULL)
+    {
+        if (isset($_SESSION['user_id'])){
+            unset($_SESSION['user_id']);
+        }
+        header("Location: /");
     }
 }
