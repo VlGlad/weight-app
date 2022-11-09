@@ -15,13 +15,14 @@ class QuerySelector
         return $table;
     }
 
-    public function getRowsWhere($table, $condition)
+    public function getRowsWhere($table, $condition, $options=null)
     {
         $request = sprintf(
-            "SELECT * FROM %s WHERE %s=%s",
+            "SELECT * FROM %s WHERE %s=%s %s",
             $table,
             implode('', array_keys($condition)),
-            ':' . implode('', array_keys($condition))
+            ':' . implode('', array_keys($condition)),
+            $options
         );
 
         $stmt = $this->pdo->prepare($request);
@@ -51,6 +52,13 @@ class QuerySelector
             ':' . implode('', array_keys($data))
         );
         $stmt = $this->pdo->prepare($request);
+        $stmt->execute($data);
+    }
+
+    public function updatePassword($table, $data)
+    {
+        $request = "UPDATE {$table} SET password = :password WHERE id = :id";
+        $stmt = $this->pdo->prepare("UPDATE {$table} SET password = :password WHERE id = :id");
         $stmt->execute($data);
     }
 }

@@ -35,10 +35,11 @@
                         </button>
                     </div>
                 <?php else:?>
-                    <div class="logOutButton">
-                        <p>Hello, <?=$user_name?> <a href="logout" style="color: red;">Выйти</a></p>
+                    <div class="logOutButtonContainer">
+                        <p id="helloText">Hello, <?=$user_name?></p>
+                        <a href="logout" style="color: red;">Logout</a>
                     </div>
-                <?php endif;?>  
+                <?php endif;?>
             </div>
         </div>
     </nav>

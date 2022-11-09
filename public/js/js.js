@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
         window.location.href = "/";
     };
 
-    signUpForm.onsubmit= async (e) => {
+    signUpForm.onsubmit = async (e) => {
         e.preventDefault();
 
         let errors = [];
@@ -91,4 +91,62 @@ document.addEventListener('DOMContentLoaded', (e) => {
             return;
         }
     };
+
+    addPointForm.onsubmit = async (e) => {
+        e.preventDefault();
+
+        data = new FormData(addPointForm);
+
+        input_weight = data.get('weight');
+        input_date = new Date(data.get('date'));
+
+        // Валидация
+        if (!isValidDate(input_date)){
+            console.log('Not a valid date');
+            return;
+        }
+
+        if (!input_weight || isNaN(input_weight) || input_weight.length > 10){
+            console.log(input_weight);
+            console.log('Not a valid number');
+            return;
+        }
+
+        // Поведение, если пользователь не залогинен
+        if (!is_user_logged_in){
+            addData(myChart, input_date.getDate() + '.' + (input_date.getMonth() + 1) + '.' + input_date.getFullYear(), input_weight);
+            return;
+        }
+
+        /* console.log(input_date); */
+        addData(myChart, input_date.getDate() + '.' + (input_date.getMonth() + 1) + '.' + input_date.getFullYear(), input_weight);
+
+        // Будем чекать новое значение: если оно меньше чем последний элемент текущего массива chart.data.labels,
+        // от мы его сортируем и отстраиваем график заново, иначе просто использует addData.
+        // бле, при сортировке нам надо ассоциативно сортировать массив точек веса
+        // бле, нам не нужна сортировка, нам нужен проход по массиву и поиск подходящего места для вставки. задача O(n) :) 
+
+
+        /* alert(data.get('weight'));
+        console.log(Date(data.get('data'))); */
+       
+        // Отправляем запрос
+        /* let response = await fetch('signup', {
+            method: 'POST',
+            body: data
+          });
+      
+        let result = await response.json();
+
+        if (result.register){
+            registerFailMessage.style.color = "green";
+            registerFailMessage.style.display = "block";
+            registerFailMessage.textContent = "Registration completed successfully!"
+            return;
+        } */
+    };
 });
+
+function isValidDate(date) {
+    return date && Object.prototype.toString.call(date) === "[object Date]" && !isNaN(date);
+}

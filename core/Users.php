@@ -17,7 +17,7 @@ class Users{
             die;
         }
         
-        $user = App::get("database")->getRowsWhere(self::$users_table, ['login' => $_POST['login']]);
+        $user = App::get("database")->getRowsWhere(self::$users_table, ['login' => $login]);
         $user_count = count($user);
         if (!$user_count){
             echo json_encode($answer);
@@ -26,7 +26,17 @@ class Users{
         
         if (password_verify($password, $user[0]->password)){
             if (password_needs_rehash($user['password'], PASSWORD_DEFAULT)){
-                // ДОБАВИТЬ ПОВЕДЕНИЕ ПРИ ПЕРЕХЕШИРОВАННИИ ПАРОЛЯ
+
+                $new_password = [
+                    'id' => $user[0]->id,
+                    'password' => password_hash($password, PASSWORD_DEFAULT)
+                ];
+
+                try {
+                    App::get('database')->updatePassword(self::$users_table, $new_password);   
+                } catch (\Throwable $th) {
+                    //throw $th;
+                }
             }
             $answer['login'] = true;
             $_SESSION['user_id'] = $user[0]->id;
@@ -71,7 +81,7 @@ class Users{
         ];
 
         try {
-            App::get('database')->insert("users_login_data", $user_data);   
+            App::get('database')->insert(self::$users_table, $user_data);   
         } catch (\Throwable $th) {
             //throw $th;
         }
