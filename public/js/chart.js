@@ -21,12 +21,10 @@ function addData(chart, label, data) {
         chart.data.datasets[0].data.push(data);
     }
     chart.update();
-    // addData(myChart, 'November', 55)
 }
 
 if (is_user_logged_in){
     current_user_date = current_user_date.map((item) => {date = new Date(item); return date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear()});
-    /* console.log(current_user_date); */
 }
 
 const chart_data = {

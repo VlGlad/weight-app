@@ -111,7 +111,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
             console.log('Not a valid number');
             return;
         }
-
         // Поведение, если пользователь не залогинен
         if (!is_user_logged_in){
             addData(myChart, input_date.getDate() + '.' + (input_date.getMonth() + 1) + '.' + input_date.getFullYear(), input_weight);
@@ -121,29 +120,14 @@ document.addEventListener('DOMContentLoaded', (e) => {
         /* console.log(input_date); */
         addData(myChart, input_date.getDate() + '.' + (input_date.getMonth() + 1) + '.' + input_date.getFullYear(), input_weight);
 
-        // Будем чекать новое значение: если оно меньше чем последний элемент текущего массива chart.data.labels,
-        // от мы его сортируем и отстраиваем график заново, иначе просто использует addData.
-        // бле, при сортировке нам надо ассоциативно сортировать массив точек веса
-        // бле, нам не нужна сортировка, нам нужен проход по массиву и поиск подходящего места для вставки. задача O(n) :) 
-
-
-        /* alert(data.get('weight'));
-        console.log(Date(data.get('data'))); */
        
         // Отправляем запрос
-        /* let response = await fetch('signup', {
+        let response = await fetch('addpoint', {
             method: 'POST',
-            body: data
-          });
-      
+            body: data,
+        });
+        
         let result = await response.json();
-
-        if (result.register){
-            registerFailMessage.style.color = "green";
-            registerFailMessage.style.display = "block";
-            registerFailMessage.textContent = "Registration completed successfully!"
-            return;
-        } */
     };
 });
 
